@@ -33,7 +33,7 @@ public abstract class Intervention implements Serializable {
     @Temporal(TemporalType.DATE) protected Date dateFin;
     protected String description;
     protected String statut;
-    
+    protected String commentaire;
     public Intervention(Client client, Date dateInter, 
             String description, String statut){
         this.client = client;
@@ -48,6 +48,14 @@ public abstract class Intervention implements Serializable {
 
     public Date getDateFin() {
         return dateFin;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
     }
 
     public String getStatut() {

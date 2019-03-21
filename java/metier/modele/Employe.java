@@ -34,5 +34,38 @@ public class Employe extends Personne {
         this.heureFin = heureFin;
         this.numEmploye = id;
     }
+
+    public Integer getNumEmploye() {
+        return numEmploye;
+    }
+
+    public boolean isStatut() {
+        return statut;
+    }
+
+    public Integer getHeureDebut() {
+        return heureDebut;
+    }
+
+    public Integer getHeureFin() {
+        return heureFin;
+    }
+
+    public void setNumEmploye(Integer numEmploye) {
+        this.numEmploye = numEmploye;
+    }
+
+    public void setStatut(boolean statut) {
+        this.statut = statut;
+    }
+
+    public void setHeureDebut(Integer heureDebut) {
+        this.heureDebut = heureDebut;
+    }
+
+    public void setHeureFin(Integer heureFin) {
+        this.heureFin = heureFin;
+    }
+    
     
 }

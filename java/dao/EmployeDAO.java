@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import metier.modele.Employe;
+import metier.modele.Intervention;
 
 /**
  *
@@ -43,4 +44,10 @@ public class EmployeDAO {
         List<Employe> res = (List<Employe>) q.getResultList();
         return res;
     }
+    
+    public static void miseAjourEmploye(Employe emp){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        em.merge(emp);
+    }
+   
 }

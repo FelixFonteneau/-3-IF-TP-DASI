@@ -9,15 +9,19 @@ import com.google.maps.model.LatLng;
 import util.GeoTest;
 import dao.EmployeDAO;
 import dao.JpaUtil;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import metier.modele.*;
 import metier.service.*;
+import util.DebugLogger;
 import static util.GeoTest.getFlightDistanceInKm;
 import static util.GeoTest.getLatLng;
 import static util.GeoTest.getTripDistanceByCarInKm;
 import static util.GeoTest.getTripDurationByBicycleInMinute;
+import util.Message;
 
 /**
  *
@@ -39,15 +43,49 @@ public class Main {
         
         Date date = new Date(2019, 3, 18, 15, 1);
         Employe emp = (Employe) Service.authentification( "vladimir.poutine@insa-lyon.fr",  "mdp");
-        InterventionAnimale interMilan = new InterventionAnimale(salut, date, "blabla", "Chat" ,"test");
-        InterventionAnimale inter2 = new InterventionAnimale(salut2, date, "miaou", "Chat" ,"test");
-
+        InterventionAnimale interMilan = new InterventionAnimale(salut, new Date(), "blabla", "Chat" ,"test");
+        InterventionAnimale inter2 = new InterventionAnimale(salut2, new Date(), "miaou", "Chat" ,"test");
+        System.out.println("====="+interMilan.getClass().getName());
         Service.demandeInter(interMilan);
         Service.demandeInter(inter2);
         List<Intervention> historique = Service.historiqueClient(salut);
         for(Intervention i : historique){
             System.out.println("   "+i.getDescription());
         }
+        
+        
+        Service.cloturerIntervention(emp, "c'était très bien", "Terminéee");
+        List<Intervention> historique2 = Service.interventionsJournee();
+        for(Intervention i : historique2){
+            System.out.println("   "+i.getDescription());
+        }
+        
+       
+       
+        // =========
+                
+        /*
+        DebugLogger.log("** Début du Test **");
+        
+        DebugLogger.log("Message de DEBUG pour tester...");
+        
+        Integer a = 0;
+        Integer b = null;
+        
+        if (a < 0) {
+            DebugLogger.log("ERREUR sur la valeur de A");
+        }
+        
+        try {
+            if (b >  0) {
+                DebugLogger.log("Test OK pour la valeur de B");
+            }
+        } catch (Exception ex) {
+            DebugLogger.log("Problème avec B", ex);
+        }
+        
+        DebugLogger.log("** Fin du Test **");
+    
         // ========
         
        /* 
